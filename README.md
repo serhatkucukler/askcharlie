@@ -1,47 +1,69 @@
-# AskCharlie —  Mental Model Analysis System inspired by Charlie Munger
+# AskCharlie
 
-A Claude Code skill that runs structured 3-layer analysis of any situation, decision, or challenge using Charlie Munger's mental models.
+> *Everyday problems, decisions, and patterns — brainstormed with Charlie Munger's mental models.*
 
-## How it works
+---
 
-When you invoke `/askcharlie` with a situation, it:
+You describe a situation. Charlie picks the right lens.
 
-1. **Selector Agent** — reads your mental model index, selects the most relevant models across 3 layers (Core Question, Blind Spot, Growth)
-2. **Analyst Agent** — generates 3 analysis blocks, each through a different lens
-3. **Saves to Obsidian** — creates a structured note in your vault
-4. **Logs the result** — maintains a running log with rating averages and improvement suggestions
+```
+your situation
+      ↓
+ Selector Agent
+ reads 86 models → picks the most relevant
+      ↓
+ Analyst Agent
+ 3 layers of structured thinking
+      ↓
+ ┌─────────────────────────────┐
+ │ 🧠 Core Question            │
+ │ 🔍 Blind Spot               │
+ │ 🚀 Growth                   │
+ └─────────────────────────────┘
+      ↓
+ saved to vault · logged · rated
+```
 
-## Files in this repo
+---
 
-| File | Description |
+## What each layer does
+
+| Layer | Purpose |
 |---|---|
-| `askcharlie.md` | The Claude Code skill |
-| `charlie-munger-index.md` | 86 mental models with questions, blind spots, and development areas |
+| **🧠 Core Question** | Names the real underlying question — not what you asked, but what you're actually facing |
+| **🔍 Blind Spot** | Surfaces what you likely can't see from where you're standing |
+| **🚀 Growth** | Points toward what needs to change, with a concrete first step |
 
-## Requirements
+---
 
-- [Claude Code](https://claude.ai/code) with a skill plugin (e.g. [Superpowers](https://github.com/anthropics/claude-code-superpowers))
-- An Obsidian vault (or any markdown-based knowledge base)
-- The `charlie-munger-index.md` placed somewhere Claude can read
+## What you get
 
-## Setup
+```
+━━━━━━━━━━━━━━━━━━━━━━
+🧠 ASKCHARLIE — Layer 1: Core Question
+━━━━━━━━━━━━━━━━━━━━━━
 
-1. Place `askcharlie.md` in your Claude Code skills folder
-2. Place `charlie-munger-index.md` somewhere Claude can read (e.g. `YOUR_VAULT_PATH/charlie-munger-index.md`)
-3. In `askcharlie.md`, replace all placeholders:
+What the situation is really asking:
+The question isn't whether to quit — it's whether you've outgrown
+the environment, not the work itself.
 
-| Placeholder | Replace with |
-|---|---|
-| `YOUR_VAULT_PATH` | Absolute path to your Obsidian vault |
-| `YOUR_PERSONAL_PROFILE.md` | A markdown file describing yourself (optional but recommended — helps model selection feel personal) |
-| `YOUR_LOG_PATH` | Where you want the log file saved (e.g. `~/.claude/logs`) |
-| `YOUR_FALLBACK_PATH` | Fallback write path if primary is unavailable |
+How Invert / Always Invert approaches this question:
+Instead of asking "what would make this job worth staying for,"
+ask "what would have to be true for leaving to be a mistake?"...
 
-4. Create the folder `NO CONTEXT ASK CHARLIE/` inside your vault. This is where analysis notes are saved.
+Insight revealed by this model:
+You haven't mapped the failure conditions of leaving — only the
+appeal of it. The promotion just removed one of them.
 
-## Usage
+Where this model breaks:
+Inversion surfaces what to avoid, not what to pursue.
+```
 
-Invoke `/askcharlie` followed by a **problem**, **situation**, or **condition** you want analyzed.
+---
+
+## Try it
+
+Invoke `/askcharlie` followed by a **problem**, **situation**, or **condition**.
 
 **Problem** — something you're actively struggling with:
 ```
@@ -72,35 +94,55 @@ I don't know if this is a product problem or a market problem.
 
 Then rate the analysis: `ac1` through `ac5` (or just `1`–`5`).
 
-## The 3-Layer Model
+---
 
-| Layer | Purpose |
-|---|---|
-| **Core Question** | Names the real underlying question — what you're actually deciding |
-| **Blind Spot** | Surfaces what you likely can't see from where you're standing |
-| **Growth** | Points toward what needs to change, with a concrete first step |
+## How the index works
 
-## The mental model index
+`charlie-munger-index.md` is the knowledge base the LLM draws from at every analysis. The Selector Agent reads the full table before choosing models — it doesn't rely on the model's built-in knowledge of Munger's work. What's in the index is what gets used.
 
-`charlie-munger-index.md` contains 86 models organized into 4 columns:
-- Model name
-- What question(s) it helps solve
+86 models, each mapped to:
+- What question it helps solve
 - What blind spot it reveals
 - What development area it strengthens
 
-You can extend this index with your own models — the Selector Agent reads the full table.
+You can extend, edit, or replace entries — the Selector Agent picks from whatever is in the file.
+
+---
+
+## Files
+
+| File | Description |
+|---|---|
+| `askcharlie.md` | The Claude Code skill |
+| `INDEXING - Charlie Munger Index.md` | 86 mental models — the knowledge base |
+
+---
+
+## Requirements
+
+- [Claude Code](https://claude.ai/code) with a skill plugin (e.g. [Superpowers](https://github.com/anthropics/claude-code-superpowers))
+- An Obsidian vault or any folder Claude can read/write
+
+## Setup
+
+1. Place `askcharlie.md` in your Claude Code skills folder
+2. Place `INDEXING - Charlie Munger Index.md` somewhere Claude can read
+3. Replace placeholders in `askcharlie.md`:
+
+| Placeholder | Replace with |
+|---|---|
+| `YOUR_VAULT_PATH` | Absolute path to your vault or notes folder |
+| `YOUR_PERSONAL_PROFILE.md` | A short markdown note about yourself — optional but makes model selection feel personal |
+| `YOUR_LOG_PATH` | Where you want the log file saved |
+| `YOUR_FALLBACK_PATH` | Backup write path if primary is unavailable |
+
+4. Create a folder called `NO CONTEXT ASK CHARLIE/` in your vault. Analysis notes are saved here automatically.
+
+---
 
 ## Personal profile (optional)
 
-The skill can read a personal profile file before selecting models. This makes the selection feel personal rather than generic. The file can be a simple markdown note about yourself: your tendencies, recurring challenges, decision-making patterns, goals.
-
-## Log file
-
-After each analysis, `askcharlie-log.md` is updated with:
-- The anchor (one-sentence framing of the situation)
-- Which models were selected across 3 layers
-- Your rating
-- A running summary: what's working, what to improve, suggestion for next time
+Before selecting models, the skill can read a short profile file about you — your tendencies, recurring challenges, decision-making patterns. This makes the selection feel personal rather than generic.
 
 ---
 
