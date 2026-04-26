@@ -44,19 +44,20 @@ your situation
 ━━━━━━━━━━━━━━━━━━━━━━
 
 What the situation is really asking:
-The question isn't whether to quit — it's whether you've outgrown
-the environment, not the work itself.
+The question isn't whether to keep going — it's whether you're
+attached to the work or attached to the outcome.
 
-How Invert / Always Invert approaches this question:
-Instead of asking "what would make this job worth staying for,"
-ask "what would have to be true for leaving to be a mistake?"...
+How Sunk Cost Fallacy approaches this question:
+Instead of asking "how do I make these 8 months worth it,"
+ask "if I started this today, would I still commit 15 hours a week?"
 
 Insight revealed by this model:
-You haven't mapped the failure conditions of leaving — only the
-appeal of it. The promotion just removed one of them.
+The time invested feels like a reason to continue. It isn't.
+Three months of stalled growth is the actual signal.
 
 Where this model breaks:
-Inversion surfaces what to avoid, not what to pursue.
+Sunk cost identifies what to ignore — it can't tell you how much
+future investment the opportunity actually deserves.
 ```
 
 ---
